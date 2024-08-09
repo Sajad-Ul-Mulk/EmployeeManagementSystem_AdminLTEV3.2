@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RegistrationFormRequest;
 use App\Models\User;
+use Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 
@@ -14,8 +15,9 @@ class RegistrationController extends Controller
      */
     public function __invoke(RegistrationFormRequest $request)
     {
-
+//dd($request->all());
         $validated = $request->validated();
+
         $avatar='';
         $user= User::create($validated);
         if($request->hasFile('avatar')) {
@@ -27,8 +29,11 @@ class RegistrationController extends Controller
             throw ValidationException::withMessages('Something Went Wrong... RETRY');
             return redirect()->back(408);
         }
-        auth()->login($user);
-        session()->regenerate();
-        return redirect()->to('/dashboard');
+        if(!Auth::user()) {
+            auth()->login($user);
+            session()->regenerate();
+            return redirect()->to('/all_users')->with('success', 'Registration Successful...');
+        }
+        return redirect()->to('all_users')->with('success', 'Registration Successful...');
     }
 }

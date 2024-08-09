@@ -6,11 +6,17 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "almasaeed2010/adminlte": "~3.",
+        "almasaeed2010/adminlte": "~3.2",
+        "jeroennoten/laravel-adminlte": "^3.13",
         "laravel/framework": "^11.9",
-        "laravel/tinker": "^2.9"
+        "laravel/sanctum": "^4.0",
+        "laravel/tinker": "^2.9",
+        "laravel/ui": "^4.5",
+        "symfony/http-client": "^7.1",
+        "symfony/mailgun-mailer": "^7.1"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.13",
         "fakerphp/faker": "^1.23",
         "laravel/pint": "^1.13",
         "laravel/sail": "^1.26",

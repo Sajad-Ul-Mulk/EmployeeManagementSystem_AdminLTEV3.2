@@ -23,4 +23,11 @@ class SessionController extends Controller
         return redirect()->to('/dashboard');
 
     }
+
+    public function destroy_session()
+    {
+        auth()->logout();
+        session()->regenerateToken();
+        return redirect()->to('/login');
+    }
 }
